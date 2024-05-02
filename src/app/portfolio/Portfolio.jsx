@@ -1,268 +1,240 @@
-import './Portfolio.css'
-import {useEffect, useState } from 'react';
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-import data from '../data/data'
-import { Modal } from 'react-bootstrap';
-import LoadingPage from './../loadingPage/LoadingPage';
-import { Link } from 'react-router-dom';
-function Portfolio() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [showPro, setShowPro] = useState(null);
-  const [dataProjects, setDataProjects] = useState(data);
-  const [searchData, setSearchData] = useState('');
 
-  const [isLoading, setIsLoading] = useState(Boolean(true));
-  useEffect(()=>{
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
-  },[])
+import { Link } from "react-router-dom";
+import "./Portfolio.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faEye } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBattleNet,
+  faBootstrap,
+  faCss3Alt,
+  faHtml5,
+  faJs,
+  faLaravel,
+  faNodeJs,
+  faPhp,
+  faReact,
+} from "@fortawesome/free-brands-svg-icons";
+import dataProjects from "../../../public/data/data";
+import { useState } from "react";
 
-  useEffect(()=>{
-    document.title='IBIDARNE | My Projects'
-  },[])
+export default function Portfolio() {
+  const [projects, setProjects] = useState(dataProjects);
+  const [activeButton, setActiveButton] = useState("all");
+  const [loading,setLoading]=useState(false)
 
-  const showProject = (id) => {
-    const foundProject = dataProjects.find((item) => id === item.id);
-    setShowPro(foundProject);
-    handleShow()
+
+  const filterProjectsByType = (type) => {
+    setLoading(true)
+    setActiveButton(type);
+    if (type === "all") {
+      setTimeout(()=>{
+        setLoading(false)
+        setProjects(dataProjects);
+      },[1000])
+    } else {
+      const filteredProjects = dataProjects.filter((project) =>
+        project.type.includes(type)
+      );
+      console.log(filteredProjects);
+      setTimeout(()=>{
+        setLoading(false)
+        setProjects(filteredProjects);
+      },[1000])
+      
+    }
   };
-
-  const handleSearcheByCode = (code) => {
-    console.log(code);
-    return data.filter(item => item.type.includes(code));
-  }
-
-
-  const ShowAllProjects =()=>{
-    if(searchData === ''){
-      return(
-        <>  {
-              dataProjects.map((item,index)=>(
-                <>
-                <div className="card_project" key={index}>
-                  <div className="content">
-                    <div className="back">
-                      <div className="back-content" style={{
-                        backgroundImage:`linear-gradient(to right, rgb(0 0 0), rgb(0 0 0 / 12%)), url(${item.poster})`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'}}>
-                        <i style={{fontSize: '3rem'}} className="fa-solid fa-code"></i>
-                        <strong>{item.title}</strong>
-                      </div>
-                    </div>
-                    <div className="front">
-                      
-                      <div className="img">
-                        <div className="circle">
-                        </div>
-                        <div className="circle" id="right">
-                        </div>
-                        <div className="circle" id="bottom">
-                        </div>
-                      </div>
-
-                      <div className="front-content">
-                        <small className="badge">Web Development</small>
-                        <div className="description">
-                          <div className="title">
-                            <p className="title">
-                              <strong>{item.title}</strong>
-                            </p>
-                            <svg fillRule="nonzero" height="15px" width="15px" viewBox="0,0,256,256"  xmlns="http://www.w3.org/2000/svg">
-                            <g style={{mixblendmode: 'normal'}} textAnchor="none" fontSize="none" fontWeight="none" fontFamily="none" strokeDashoffset="0" strokeDasharray="" strokeMiterlimit="10" strokeLinejoin="miter" strokeLinecap="butt" strokeWidth="1" stroke="none" fillRule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
-                          </div>
-                          <p className="card-footer">
-                            {item.description}
-                          </p>
-                          <div className='d-flex justify-content-center align-items-center'>
-                            <button className="button" onClick={()=>showProject(item.id)}>
-                              <span className="button_lg">
-                                <span className="button_sl"></span>
-                                <span className="button_text"><i className="fa-solid fa-tv"></i> PREVIEW</span>
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </>
-              ))
-            }
-        </>
-      )
-    }else if(searchData.length !== 0){
-      return (
-        <>
-        {
-          searchData.map((item,index)=>(
+  return (
+    <section id="section__projects">
+      <div className="col-12">
+        <div className="title_section_about">
+          <h1>
+            My <span>Creative Portfolio</span> Section
+          </h1>
+        </div>
+      </div>
+      <div className="container">
+        <div id="search__btn">
+          <button
+            className={activeButton === "all" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("all");
+            }}
+          >
+            All
+          </button>
+          <button
+            className={activeButton === "html_css" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("html_css");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faHtml5} />
+            </span>{" "}
+            Html &{" "}
+            <span className="me-1">
+              <FontAwesomeIcon icon={faCss3Alt} />
+            </span>{" "}
+            Css
+          </button>
+          <button
+            className={activeButton === "Bootstrap" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("Bootstrap");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faBootstrap} />
+            </span>
+            Bootstrap
+          </button>
+          <button
+            className={activeButton === "JavaScript" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("JavaScript");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faJs} />
+            </span>
+            JavaScript
+          </button>
+          <button
+            className={activeButton === "php" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("php");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faPhp} />
+            </span>
+            Php
+          </button>
+          <button
+            className={activeButton === "reactjs" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("reactjs");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faReact} />
+            </span>
+            React Js
+          </button>
+          <button
+            className={activeButton === "nodejs" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("nodejs");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faNodeJs} />
+            </span>
+            Node Js
+          </button>
+          <button
+            className={activeButton === "Laravel" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("Laravel");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faLaravel} />
+            </span>
+            Laravel
+          </button>
+          <button
+            className={activeButton === "reactjs_Laravel" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("reactjs_Laravel");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faReact} />
+            </span>{" "}
+            React Js &{" "}
+            <span className="me-1">
+              <FontAwesomeIcon icon={faLaravel} />
+            </span>{" "}
+            Laravel
+          </button>
+          <button
+            className={activeButton === "reactjs_nodejs" ? "isActive" : ""}
+            onClick={() => {
+              filterProjectsByType("reactjs_nodejs");
+            }}
+          >
+            <span className="me-1">
+              <FontAwesomeIcon icon={faReact} />
+            </span>{" "}
+            React Js &{" "}
+            <span className="me-1">
+              <FontAwesomeIcon icon={faNodeJs} />
+            </span>{" "}
+            Node Js
+          </button>
+          
+        </div>
+        <div className="section__portfolio">
+          {loading ?(
             <>
-            <div className="card_project" key={index}>
-              <div className="content">
-                <div className="back">
-                  <div className="back-content" style={{
-                    backgroundImage:`linear-gradient(to right, rgb(0 0 0), rgb(0 0 0 / 12%)), url(${item.poster})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'}}>
-                    <i style={{fontSize: '3rem'}} className="fa-solid fa-code"></i>
-                    <strong>{item.title}</strong>
-                  </div>
-                </div>
-                <div className="front">
-                  
-                  <div className="img">
-                    <div className="circle">
-                    </div>
-                    <div className="circle" id="right">
-                    </div>
-                    <div className="circle" id="bottom">
-                    </div>
-                  </div>
-
-                  <div className="front-content">
-                    <small className="badge">Web Development</small>
-                    <div className="description">
-                      <div className="title">
-                        <p className="title">
-                          <strong>{item.title}</strong>
-                        </p>
-                        <svg fillRule="nonzero" height="15px" width="15px" viewBox="0,0,256,256"  xmlns="http://www.w3.org/2000/svg">
-                        <g style={{mixblendmode: 'normal'}} textAnchor="none" fontSize="none" fontWeight="none" fontFamily="none" strokeDashoffset="0" strokeDasharray="" strokeMiterlimit="10" strokeLinejoin="miter" strokeLinecap="butt" strokeWidth="1" stroke="none" fillRule="nonzero" fill="#20c997"><g transform="scale(8,8)"><path d="M25,27l-9,-6.75l-9,6.75v-23h18z"></path></g></g></svg>
-                      </div>
-                      <p className="card-footer">
-                        {item.description}
-                      </p>
-                      <div className='d-flex justify-content-center align-items-center'>
-                        <button className="button" onClick={()=>showProject(item.id)}>
-                          <span className="button_lg">
-                            <span className="button_sl"></span>
-                            <span className="button_text"><i className="fa-solid fa-tv"></i> PREVIEW</span>
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="spinner-border text-light" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
             </>
-          ))
-        }
-        </>
-      )
-    }else if(searchData.length === 0){
-      return (
-        <>
-        <div style={{gridColumn: '1/3'}}>
-          <h1 style={{color: '#fff',opacity: '0.5',fontSize: '30px'}} className="no-result text-center mt-5">No results found</h1>
-        </div>
-        </>
-      )
-    }
-  }
-  return (
-    <>
-    {isLoading ? (
-        <LoadingPage />
-      ) : (
-      <section className="projects">
-        <div className="container">
-          <div className="title_section_projects">
-            <h1>MY <span>PROJECTS</span></h1>
-          </div>
-          <div className="filltrage" style={{marginBottom:'2rem'}}>
-            <Box sx={{ minWidth: 120 }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label" style={{
-                  color:'#fff',
-                  background: '#24252e',
-                  padding: '5px',
-                  borderRadius: '20px',
-                  fontWeight: '700'
-                }}>
-                  Select Language Project
-                </InputLabel>
-                <Select 
-                  color="error"
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Age"
-                  onChange={(e) => setSearchData(handleSearcheByCode(e.target.value))}
-                >
-                  <MenuItem >All Projects</MenuItem>
-                  <MenuItem value="HTML & CSS">HTML & CSS</MenuItem>
-                  <MenuItem value="JavaScript">JavaScript</MenuItem>
-                  <MenuItem value="Bootstrap">Bootstrap</MenuItem>
-                  <MenuItem value="PHP & MYSQL">PHP & MYSQL</MenuItem>
-                  <MenuItem value="Laravel">Laravel</MenuItem>
-                  <MenuItem value="React & MUI">React & MUI</MenuItem>
-                  <MenuItem value="Node & Express">Node & Express</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-          </div>
-          <div className='show_projects'>
-
-            {ShowAllProjects()}
-          </div>
-        </div>
-        
-        {showPro && (
-          <Modal show={show} onHide={handleClose} centered>
-            <div  className="modal-content" style={{ background: '#111111' }}>
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="exampleModalLabel" style={{
-                  color: '#fff',
-                  textTransform: 'uppercase',
-                  fontWeight: 'bold'
-                }}>{showPro.title}</h1>
-                <button type="button" className="btn-close" aria-label="Close" onClick={handleClose}>
-                  <i className="fa-solid fa-circle-xmark" style={{ color: '#fff', fontSize: '30px' }}></i>
-                </button>
-              </div>
-              <div className="modal-body">
-                <div className='d-flex justify-content-center align-items-center'>
-                  <div style={{ width: '70%', overflow: 'hidden' }}>
-                    <img src={showPro.qrCode} alt="" style={{ width: '100%', height: '50vh' }} />
-                  </div>
-                </div>
-                <div className='d-flex justify-content-center align-items-center'>
-                  <button className="button">
-                    <span className="button_lg">
-                      <span className="button_sl"></span>
-                      <Link to={showPro.link}>
-                        <span className="button_text"><i className="fa-solid fa-jet-fighter"></i> LIVE PREVIEW</span>
+          ):(
+            <>
+            
+              {projects.length > 0 ? (
+                projects.map((project, index) => (
+                  <div className="card__project" key={index}>
+                    <div className="card__header">
+                      <Link to={`/portfolio/display/${project.id}`}>
+                        <img
+                          src={project.poster}
+                          alt="card__image"
+                          className="card__image"
+                          width="600"
+                        />
                       </Link>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </Modal>
-        )}
-      </section>
-      )}
-    </>
-  )
+                    </div>
+                    <div className="card__body">
+                      <span className="tag tag-blue">
+                        <span className="me-2">
+                          <FontAwesomeIcon icon={faBattleNet} />
+                        </span>
+                        Web Development
+                      </span>
+                      <h4>{project.title}</h4>
+                      <p>{project.description}</p>
+                      <div id="technology__used">
+                        {project.language.map((item,index)=>(
+                          <button key={index} disabled>{item}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="card__footer">
+                      <div>
+                        <Link>
+                          <FontAwesomeIcon icon={faEye} /> Live
+                        </Link>
+                      </div>
+                      <div>
+                        <Link to={`/portfolio/display/${project.id}`}>
+                          Read More <FontAwesomeIcon icon={faArrowRight} />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="text-light text-bold">Data Not Found.</p>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }
-
-export default Portfolio;
-
-
-
-
-
-
-
-
-
-
-
-

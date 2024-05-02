@@ -1,4 +1,5 @@
 import styleEducation from './Education.module.css'
+
 function Education() {
 
   return (

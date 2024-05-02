@@ -1,31 +1,30 @@
-
 import { Outlet } from "react-router-dom";
-import Header from './../app/header/Header';
+import Header from "./../app/header/Header";
 import Navigation from "./../app/bottom navbar/Navigation";
 import { useEffect, useState } from "react";
-import LoadingPage from './../app/loadingPage/LoadingPage';
+import LoadingPage from "./../app/loadingPage/LoadingPage";
 
 function Layout() {
   const [isLoading, setIsLoading] = useState(Boolean(true));
-  useEffect(()=>{
+  useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-  },[])
+  }, []);
+
   return (
     <>
-    
-    {isLoading ? (
+      {isLoading ? (
         <LoadingPage />
       ) : (
         <>
-        <Header/>
-        <Outlet/>
-        <Navigation/>
+          <Header />
+          <Outlet />
+          <Navigation />
         </>
       )}
     </>
-  )
+  );
 }
 
 export default Layout;

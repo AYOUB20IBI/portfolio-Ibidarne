@@ -1,0 +1,40 @@
+.divBTN{
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.socialBTN {
+    color: #fff;
+    font-weight: 700;
+    background: var(--color3);
+    font-size: 1.1rem;
+    border: none;
+    padding: 7px 16px;
+    cursor: pointer;
+    border-width: 1px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px -6px rgba(0, 0, 0, 0.12);
+    position: relative;
+    animation: test 1.8s infinite ease-in-out;
+}
+
+.socialBTN:hover {
+    color: #ffffff;
+}
+
+
+@keyframes test {
+    0% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .5;
+    }
+
+}

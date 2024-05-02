@@ -1,25 +1,39 @@
-.divBTN{
+.divBTN {
     margin-bottom: 1rem;
     margin-top: 1rem;
 }
 
-.socialBTN{
+.socialBTN {
     color: #fff;
     font-weight: 700;
-    background: #454549;
+    background: var(--color3);
+    font-size: 1.1rem;
     border: none;
-    padding: 14px 16px;
+    padding: 9px 16px;
     cursor: pointer;
     border-width: 1px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0px 10px 20px -6px rgba(0, 0, 0, 0.12);
     position: relative;
-    transition: 0.3s;
-    opacity: 0.5;
+    animation: test 1.8s infinite ease-in-out;
 }
 
-.socialBTN:hover{
-    opacity: 1;
-    border: 1px solid #afafaf;
+.socialBTN:hover {
     color: #ffffff;
+}
+
+
+@keyframes test {
+    0% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .5;
+    }
+
 }

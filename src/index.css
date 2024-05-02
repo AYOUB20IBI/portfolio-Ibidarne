@@ -1,23 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root{
+  --color1:#FF9800;
+  --color2:#F44336;
+  --color3:#454545;
+  --blue:#4accdb;
+}
+
 body {
-    font-family: "Open Sans", sans-serif;
-    color: #272829;
-  }
-  
-  a {
-    color: #0563bb;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #067ded;
-    text-decoration: none;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Raleway", sans-serif;
-  }
+  font-family: 'cairo';
+  color: #272829;
+  background: #111111;
+  height: 100vh;
+}
+
+a {
+  color: #0563bb;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #067ded;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif;
+}

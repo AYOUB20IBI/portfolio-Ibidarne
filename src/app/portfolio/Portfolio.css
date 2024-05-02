@@ -1,7 +1,5 @@
-.projects{
+/* .projects{
     background: #111111;
-    /* height: 100vh;
-    width: 100%; */
     padding-bottom: 7rem;
 }
 
@@ -84,8 +82,6 @@
     position: absolute;
     width: 99%;
     height: 99%;
-    /* background-color: #151515; */
-    /* background: url(../../assets/images/contact-bg.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -235,4 +231,192 @@ div#demo-simple-select {
 }
 
 
+ */
 
+
+/* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+} */
+
+#section__projects .section__portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin-block: 2rem;
+  gap: 1rem;
+  font-family: 'Cairo';
+}
+
+#section__projects img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 200px;
+  border-radius: 20px;
+}
+
+#section__projects .card__project {
+  display: flex;
+  flex-direction: column;
+  width: clamp(20rem, calc(20rem + 2vw), 22rem);
+  overflow: hidden;
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  /* background: #ECE9E6;
+  background: linear-gradient(to right, #FFFFFF, #ECE9E6); */
+  font-family: 1rem;
+  padding: 1rem;
+  background: #ffffff21;
+  backdrop-filter: blur(50px);
+  color: #fff;
+
+}
+
+
+
+#section__projects .card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+
+#section__projects .tag {
+  align-self: flex-start;
+  padding: .25em .75em;
+  border-radius: 1em;
+  font-size: .75rem;
+}
+
+#section__projects .tag+.tag {
+  margin-left: .5em;
+}
+
+#section__projects .tag-blue {
+  background: #56CCF2;
+  background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+  color: #fafafa;
+}
+
+#section__projects .tag-brown {
+  background: #D1913C;
+  background: linear-gradient(to bottom, #FFD194, #D1913C);
+  color: #fafafa;
+}
+
+#section__projects .tag-red {
+  background: #cb2d3e;
+  background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+  color: #fafafa;
+}
+
+#section__projects .card__body h4 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  font-family: 'Cairo';
+  color: #fff;
+}
+#section__projects .card__body p{
+  color: #ffffff9c;
+  font-size: 14px;
+}
+
+#section__projects .card__footer {
+  display: flex;
+  padding: 1rem;
+  margin-top: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#section__projects .card__footer a{
+  color: var(--color1);
+  font-weight: 700;
+  transition: 0.7s;
+}
+
+#section__projects .card__footer a:hover{
+  color: #fff;
+}
+
+
+
+#section__projects #search__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#section__projects #search__btn button {
+  margin: 5px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  background: var(--color3);
+  color: #fff;
+  font-weight: 600;
+  transition: 0.4s;
+}
+
+#section__projects #search__btn button:hover {
+  background: var(--color1);
+}
+
+#section__projects #search__btn .isActive {
+  background: var(--color1);
+}
+
+#section__projects .body__skills {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+
+
+#section__projects #technology__used button{
+  outline: dotted 2px #fff;
+  border: 0;
+  margin: 5px;
+  border-radius: 15%;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--color3);
+  color: #fff;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+#section__projects #technology__used button:hover{
+  background: var(--color1);
+}
+
+@media screen and (max-width: 767px) {
+  #section__projects .card__project {
+    width: 100%;
+  }
+  #section__projects img {
+    height: 100%;
+  }
+  #section__projects #search__btn {
+    justify-content: flex-start;
+  }
+}
