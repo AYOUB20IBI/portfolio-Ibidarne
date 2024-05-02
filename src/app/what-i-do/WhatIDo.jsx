@@ -11,7 +11,7 @@ export default function WhatIDo() {
         </div>
       <ul className="cards">
         <li>
-          <a href="" className="card">
+          <div className="card">
             <img
               src={require('../../assets/images/fullstack.jpeg')}
               className="card__image"
@@ -31,10 +31,10 @@ export default function WhatIDo() {
                end-to-end solutions, leveraging expertise in both front-end and back-end technologies.
               </p>
             </div>
-          </a>
+          </div>
         </li>
         <li>
-          <a href="" className="card">
+          <div className="card">
             <img
               src={require('../../assets/images/frontend.jpeg')}
               className="card__image"
@@ -54,10 +54,10 @@ export default function WhatIDo() {
               I thrive in backend development, utilizing robust frameworks and databases to architect scalable and secure server-side solutions.
               </p>
             </div>
-          </a>
+          </div>
         </li>
         <li>
-          <a href="" className="card">
+          <div className="card">
             <img
               src={require('../../assets/images/backend.jpeg')}
               className="card__image"
@@ -78,7 +78,7 @@ export default function WhatIDo() {
                 and databases to architect scalable and secure server-side solutions.
               </p>
             </div>
-          </a>
+          </div>
         </li>
       </ul>
     </section>
