@@ -1,0 +1,17 @@
+#footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    text-align: center;
+}
+#footer p{
+    color: #ffffff96;
+}
+
+#footer p span{
+    color: var(--color1);
+    font-weight: 700;
+}

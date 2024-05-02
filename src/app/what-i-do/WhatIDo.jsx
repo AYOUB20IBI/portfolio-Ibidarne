@@ -13,7 +13,7 @@ export default function WhatIDo() {
         <li>
           <a href="" className="card">
             <img
-              src="src/assets/images/fullstack.jpeg"
+              src={require('../../assets/images/fullstack.jpeg')}
               className="card__image"
               alt=""
             />
@@ -36,7 +36,7 @@ export default function WhatIDo() {
         <li>
           <a href="" className="card">
             <img
-              src="src/assets/images/frontend.jpeg"
+              src={require('../../assets/images/frontend.jpeg')}
               className="card__image"
               alt=""
             />
@@ -59,7 +59,7 @@ export default function WhatIDo() {
         <li>
           <a href="" className="card">
             <img
-              src="src/assets/images/backend.jpeg"
+              src={require('../../assets/images/backend.jpeg')}
               className="card__image"
               alt=""
             />

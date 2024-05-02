@@ -1,3 +1,13 @@
+#education{
+    padding: 3rem !important;
+}
+
+@media (max-width:770px){
+    #education{
+        padding: 0rem !important;
+    }
+}
+
 .timelineE {
     position: relative;
     max-width: 1200px;

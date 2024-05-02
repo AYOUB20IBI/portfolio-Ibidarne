@@ -5,7 +5,7 @@ import { faBattleNet } from "@fortawesome/free-brands-svg-icons";
 function Education() {
   return (
     <>
-      <div className="container p-5">
+      <div className="container" id={styleEducation.education}>
         <div className="col-12">
             <div className={styleEducation.title_section_education}>
               <h1>
@@ -28,7 +28,7 @@ function Education() {
               </div>
               <div className={`${styleEducation.text__bottom}`}>
                 <small><span className="me-1"><FontAwesomeIcon icon={faCalendarDay}/></span> April 2023 - Present</small><br />
-                <small><span className="me-1"><FontAwesomeIcon icon={faThumbTack}/></span> Computer Science Engineering</small>
+                <small><span className="me-1"><FontAwesomeIcon icon={faThumbTack}/></span> ***</small>
                 <p><small><span className="me-1"><FontAwesomeIcon icon={faPlus}/></span></small> Developing a website for the company to display its services.</p>
                 <span
                   className={`${styleEducation.left_container_arrow}`}

@@ -1,5 +1,4 @@
-import { Typewriter } from "react-simple-typewriter";
-import contactBg from "../../assets/images/contact-bg.jpg";
+
 import "react-toastify/dist/ReactToastify.css";
 
 import "./Contact.css";
@@ -14,34 +13,76 @@ import {
   faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import Swal from "sweetalert2";
 function Contact() {
-  const [isLoading, setIsLoading] = useState(Boolean(true));
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const handelSend = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const service_id = "service_0wmq8uw";
-    const template_id = "template_vk47j6c";
-    const publicKey = "oPFC3k0ZEj7O6ahjC";
+  const [isLoading, setIsLoading] = useState(true);
+const [name, setName] = useState("");
+const [email, setEmail] = useState("");
+const [subject, setSubject] = useState("");
+const [message, setMessage] = useState("");
+const [loading, setLoading] = useState(false);
+const [errors, setErrors] = useState({
+  ErrorName: '',
+  ErrorEmail: '',
+  ErrorSubject: '',
+  ErrorMessage: ''
+});
 
+const handelSend = (e) => {
+  e.preventDefault();
+  setLoading(true);
+  const service_id = "service_0wmq8uw";
+  const template_id = "template_vk47j6c";
+  const publicKey = "oPFC3k0ZEj7O6ahjC";
+
+  let error = false;
+
+  if (name.trim() === "") {
+    setErrors(prevState => ({ ...prevState, ErrorName: "Please Enter Your Name" }));
+    error = true;
+  } else {
+    setErrors(prevState => ({ ...prevState, ErrorName: "" }));
+  }
+
+  if (email.trim() === "") {
+    setErrors(prevState => ({ ...prevState, ErrorEmail: "Please Enter Your Email" }));
+    error = true;
+  } else {
+    setErrors(prevState => ({ ...prevState, ErrorEmail: "" }));
+  }
+
+  if (subject.trim() === "") {
+    setErrors(prevState => ({ ...prevState, ErrorSubject: "Please Enter Your Subject" }));
+    error = true;
+  } else {
+    setErrors(prevState => ({ ...prevState, ErrorSubject: "" }));
+  }
+
+  if (message.trim() === "") {
+    setErrors(prevState => ({ ...prevState, ErrorMessage: "Please Enter Your Message" }));
+    error = true;
+  } else {
+    setErrors(prevState => ({ ...prevState, ErrorMessage: "" }));
+  }
+
+  if (!error) {
     const templateParams = {
       from_name: name,
       subject: subject,
       from_email: email,
       message: message,
-      to_name: "IBIDARNE",
+      to_name: "IBIDARNE AYOUB",
     };
 
     emailjs
       .send(service_id, template_id, templateParams, publicKey)
       .then((response) => {
         if (response.status === 200) {
-          console.log("Email sent Successfuly", response);
-          toast.success("Email sent Successfuly");
+          console.log("Email sent Successfully", response);
+          Swal.fire({
+            icon: 'success',
+            text: 'Email sent Successfully'
+          });
           setName("");
           setEmail("");
           setMessage("");
@@ -51,9 +92,21 @@ function Contact() {
       })
       .catch((error) => {
         console.log("FAILED...", error);
-        toast.error("FAILED...");
+        Swal.fire({
+          icon: 'error',
+          text: 'Email not sent Successfully'
+        });
+        setLoading(false);
       });
-  };
+  } else {
+    Swal.fire({
+      icon: 'error',
+      text: 'Email not sent Successfully'
+    });
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -91,8 +144,8 @@ function Contact() {
                         </div>
                         <div className="text">
                           <p>
-                            <span>Address:</span>
-                            <span className="type_writer_span">Casablanca</span>
+                            <span>Address : </span>
+                            <span className="type_writer_span"> Casablanca</span>
                           </p>
                         </div>
                       </div>
@@ -106,10 +159,10 @@ function Contact() {
                         </div>
                         <div className="text">
                           <p>
-                            <span>Phone:</span>{" "}
+                            <span>Phone : </span>{" "}
                             <a href="tel://1234567920">
                               <span className="type_writer_span">
-                                +212 677687809
+                                 +212 677687809
                               </span>
                             </a>
                           </p>
@@ -125,7 +178,7 @@ function Contact() {
                         </div>
                         <div className="text">
                           <p>
-                            <span>Email:</span>{" "}
+                            <span>Email : </span>{" "}
                             <a href="mailto:info@yoursite.com">
                               <span className="type_writer_span text-lowercase">
                                 ayoubibidarne2@gmail.com
@@ -136,19 +189,9 @@ function Contact() {
                       </div>
                     </div>
                   </div>
-                  <div className="row no-gutters">
-                    <div className="col-md-7">
-                      <div className="contact-wrap w-100 p-md-5 p-4">
-                        <h3
-                          className="mb-4"
-                          style={{ fontSize: "2.1rem", color: " #f4f4f5" }}
-                        >
-                          Contact Us
-                        </h3>
-                        <div id="form-message-warning" className="mb-4"></div>
-                        <div id="form-message-success" className="mb-4">
-                          Your message was sent, thank you!
-                        </div>
+                  <div className="row no-gutters" id="section__send_email">
+                    <div className="col-md-12">
+                      <div className="contact-wrap  p-md-5 p-4">
                         <form
                           id="contactForm"
                           name="contactForm"
@@ -166,9 +209,14 @@ function Contact() {
                                   className="form-control"
                                   name="name"
                                   id="name"
-                                  placeholder="Name"
+                                  placeholder="Full Name"
                                   onChange={(e) => setName(e.target.value)}
                                 />
+                                <span>
+                                  {errors.ErrorName &&
+                                    <p className="text-danger">{errors.ErrorName}</p>
+                                  }
+                                </span>
                               </div>
                             </div>
                             <div className="col-md-6">
@@ -181,9 +229,14 @@ function Contact() {
                                   className="form-control"
                                   name="email"
                                   id="email"
-                                  placeholder="Email"
+                                  placeholder="Email Address"
                                   onChange={(e) => setEmail(e.target.value)}
                                 />
+                                <span>
+                                  {errors.ErrorEmail &&
+                                    <p className="text-danger">{errors.ErrorEmail}</p>
+                                  }
+                                </span>
                               </div>
                             </div>
                             <div className="col-md-12">
@@ -199,6 +252,11 @@ function Contact() {
                                   placeholder="Subject"
                                   onChange={(e) => setSubject(e.target.value)}
                                 />
+                                <span>
+                                  {errors.ErrorSubject &&
+                                    <p className="text-danger">{errors.ErrorSubject}</p>
+                                  }
+                                </span>
                               </div>
                             </div>
                             <div className="col-md-12">
@@ -215,6 +273,11 @@ function Contact() {
                                   placeholder="Message"
                                   onChange={(e) => setMessage(e.target.value)}
                                 ></textarea>
+                                <span>
+                                  {errors.ErrorMessage &&
+                                    <p className="text-danger">{errors.ErrorMessage}</p>
+                                  }
+                                </span>
                               </div>
                             </div>
                             <div className="col-md-12">
@@ -243,12 +306,6 @@ function Contact() {
                           </div>
                         </form>
                       </div>
-                    </div>
-                    <div className="col-md-5 d-flex align-items-stretch">
-                      <div
-                        className="info-wrap w-100 p-5 img"
-                        style={{ backgroundImage: `url(${contactBg})` }}
-                      ></div>
                     </div>
                   </div>
                 </div>

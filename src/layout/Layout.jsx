@@ -3,6 +3,7 @@ import Header from "./../app/header/Header";
 import Navigation from "./../app/bottom navbar/Navigation";
 import { useEffect, useState } from "react";
 import LoadingPage from "./../app/loadingPage/LoadingPage";
+import Footer from "../app/footer/Footer";
 
 function Layout() {
   const [isLoading, setIsLoading] = useState(Boolean(true));
@@ -20,6 +21,7 @@ function Layout() {
         <>
           <Header />
           <Outlet />
+          <Footer/>
           <Navigation />
         </>
       )}
