@@ -216,7 +216,7 @@ export default function Portfolio() {
                     </div>
                     <div className="card__footer">
                       <div>
-                        <Link>
+                        <Link to={project.link}>
                           <FontAwesomeIcon icon={faEye} /> Live
                         </Link>
                       </div>
