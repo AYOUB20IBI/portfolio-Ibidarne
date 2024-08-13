@@ -1,10 +1,10 @@
 const data = [
     {
         id: 1,
-        title: "Hotel Management & Booking Online (in progress)",
+        title: "Hotel Management & Booking Online",
         type: ["reactjs", "Laravel","php","reactjs_Laravel"],
         poster: require('../../src/assets/images/projects/hotel-management.png'),
-        description: `Seamlessly manage bookings, streamline operations, and delight guests with our React.js and Laravel-powered solution.`,
+        description: `I developed the Hotel Management & Booking Online Project, an advanced system designed to streamline hotel operations and facilitate efficient booking processes. This platform combines modern technologies to provide a user-friendly experience for both administrators and guests.`,
         link: "*",
         language: ["HTML5", "CSS3", "JavaScript", "React.js", "Laravel"],
         advantages: [
@@ -27,7 +27,7 @@ const data = [
         title: "Chatify IBI27A (Chat Applicaton)",
         type: ["reactjs", "nodejs","reactjs_nodejs"],
         poster: require('../../src/assets/images/projects/chatify-ibi27a.png'),
-        description: `Seamlessly manage bookings, streamline operations, and delight guests with our React.js and Laravel-powered solution.`,
+        description: `I developed Chatify IBI27A, a cutting-edge chat application designed to enhance communication and streamline operations. Leveraging the power of React.js and Node.js, this application offers a sophisticated chat experience with real-time interactions and seamless integration.`,
         link: "https://ayoub20ibi.github.io/lading-page/",
         language: ["HTML5", "CSS3", "JavaScript", "React.js", "Node Js","Socket.io","Mongo DB","Express Js"],
         advantages: [

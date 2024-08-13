@@ -27,8 +27,8 @@ function Education() {
                 <h2><span className="me-1"><FontAwesomeIcon icon={faBattleNet}/></span> Traineeship.</h2>
               </div>
               <div className={`${styleEducation.text__bottom}`}>
-                <small><span className="me-1"><FontAwesomeIcon icon={faCalendarDay}/></span> April 2023 - Present</small><br />
-                <small><span className="me-1"><FontAwesomeIcon icon={faThumbTack}/></span> ***</small>
+                <small><span className="me-1"><FontAwesomeIcon icon={faCalendarDay}/></span> April 2024 - May 2024</small><br />
+                <small><span className="me-1"><FontAwesomeIcon icon={faThumbTack}/></span>  BRIGHTEN CONSULTING</small>
                 <p><small><span className="me-1"><FontAwesomeIcon icon={faPlus}/></span></small> Developing a website for the company to display its services.</p>
                 <span
                   className={`${styleEducation.left_container_arrow}`}
@@ -51,7 +51,7 @@ function Education() {
                 <small><span className="me-1"><FontAwesomeIcon icon={faCalendarDay}/></span> September 2022 - Present</small><br />
                 <small><span className="me-1"><FontAwesomeIcon icon={faThumbTack}/></span> ISTA Sidi Moumen</small>
                 <p>
-                    <small><span className="me-1"><FontAwesomeIcon icon={faPlus}/></span></small> Engaged in learning full-stack technologies.
+                    <small><span className="me-1"><FontAwesomeIcon icon={faPlus}/></span></small> Technicien Spécialisé en Développement Digital.
                 </p>
                 <span
                   className={`${styleEducation.rigth_container_arrow}`}
